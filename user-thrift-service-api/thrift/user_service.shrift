@@ -1,0 +1,24 @@
+namespace java com.liuyao.thrift.user
+
+#thrift定义实体
+struct UserInfo{
+    1:i32 id,
+    2:string username,
+    3:string password,
+    4:string realname,
+    5:string mobile,
+    6:string email
+    7:string intro;
+    8:string stars;
+}
+service UserService {
+
+    #信息传输
+    UserInfo getUserById(1:i32 id);
+    UserInfo getMerchantById(1:i32 id);
+    UserInfo getUserByName(1:string username);
+
+    #注册信息
+    void registerUser(1:UserInfo userInfo);
+
+}

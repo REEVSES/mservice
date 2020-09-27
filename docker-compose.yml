@@ -1,0 +1,46 @@
+version: '3'
+
+services:
+  message-service:
+    image: message-service:latest
+
+  user-service:
+    image: user-service:latest
+    command:
+#    - "--mysql.address=10.71.2.207"
+    - "--mysql.address=127.0.0.1"
+
+  user-edge-service:
+    image: user-edge-service:latest
+    links:
+    - user-service
+    - message-service
+    command:
+#    - "--redis.address=10.71.2.207"
+    - "--redis.address=127.0.0.1"
+
+  goods-service:
+    image: goods-service:latest
+    links:
+    - user-service
+    command:
+#    - "--mysql.address=10.71.2.207"
+    - "--mysql.address=127.0.0.1"
+#    - "--zookeeper.address=10.71.2.207"
+    - "--zookeeper.address=127.0.0.1"
+
+  goods-edge-service:
+    image: goods-edge-service:latest
+    links:
+    - user-edge-service
+    command:
+#    - "--zookeeper.address=10.71.2.207"
+    - "--zookeeper.address=127.0.0.1"
+
+  api-gateway:
+    image: api-gateway:latest
+    links:
+    - user-edge-service
+    - goods-edge-service
+    ports:
+    - 8080:8080

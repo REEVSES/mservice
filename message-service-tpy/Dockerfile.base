@@ -1,0 +1,4 @@
+FROM python:3.7
+MAINTAINER liuyao 1209725274@qq.com
+
+RUN pip install thrift
