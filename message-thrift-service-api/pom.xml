@@ -12,6 +12,7 @@
     <artifactId>message-thrift-service-api</artifactId>
     <version>1.0-SNAPSHOT</version>
 
+
     <!--    要自己有自己独立的依赖-->
     <dependencies>
         <dependency>

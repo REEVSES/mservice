@@ -7,7 +7,6 @@ services:
   user-service:
     image: user-service:latest
     command:
-#    - "--mysql.address=10.71.2.207"
     - "--mysql.address=127.0.0.1"
 
   user-edge-service:
@@ -16,7 +15,6 @@ services:
     - user-service
     - message-service
     command:
-#    - "--redis.address=10.71.2.207"
     - "--redis.address=127.0.0.1"
 
   goods-service:
@@ -24,9 +22,7 @@ services:
     links:
     - user-service
     command:
-#    - "--mysql.address=10.71.2.207"
     - "--mysql.address=127.0.0.1"
-#    - "--zookeeper.address=10.71.2.207"
     - "--zookeeper.address=127.0.0.1"
 
   goods-edge-service:
@@ -34,7 +30,6 @@ services:
     links:
     - user-edge-service
     command:
-#    - "--zookeeper.address=10.71.2.207"
     - "--zookeeper.address=127.0.0.1"
 
   api-gateway:
